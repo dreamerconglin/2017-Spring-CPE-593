@@ -1,0 +1,18 @@
+ static int FNV_Hash (const string& key) const {
+        int hash = offset_basis;
+        for(auto c : key)
+            hash = (hash ^ c) * FNV_prime;
+        hash += hash << 13;
+        hash ^= hash >> 7;
+        hash += hash << 3;
+        hash ^= hash >> 17;
+        hash += hash << 5;
+        return hash;
+    }
+
+    static int Bernstein_Hash(const string& key) const {
+        int hash = 0;
+        for (auto c : key)
+            hash = 33*hash + c;
+        return hash;
+    }
